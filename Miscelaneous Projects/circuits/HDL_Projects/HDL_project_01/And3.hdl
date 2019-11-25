@@ -10,7 +10,7 @@
  */
 
 CHIP And3 {
-    IN a, b;
+    IN a, b, c;
     OUT out;
 
     PARTS:
