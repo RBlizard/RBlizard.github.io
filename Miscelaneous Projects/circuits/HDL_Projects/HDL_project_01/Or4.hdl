@@ -1,0 +1,20 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Or8Way.hdl
+
+/**
+ * 4-bit Or: 
+ * out = (a or b or c or d)
+ */
+
+CHIP Or4 {
+    IN a, b, c, d;
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+    Or(a=a, b=b, out=a1);
+    Or(a=c, b=d, out=a2);
+    Or(a=a1, b=a2, out=out);
+}
