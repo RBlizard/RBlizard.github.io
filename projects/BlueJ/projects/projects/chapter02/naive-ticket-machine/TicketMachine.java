@@ -29,6 +29,13 @@ public class TicketMachine
         balance = 0;
         total = 0;
     }
+    
+    public TicketMachine()
+    {
+        price = 1000;
+        balance = 0;
+        total = 0;
+    }
 
     /**
      * Return the price of a ticket.
@@ -37,7 +44,22 @@ public class TicketMachine
     {
         return price;
     }
-
+    
+    public void showPrice()
+    {
+        System.out.println("The price of a ticket is "+ price +" cents.");
+    }
+    
+    public void prompt()
+    {
+        System.out.println("Please insert the correct amount of money.");
+    }
+    
+    public void setPrice(int newPrice)
+    {
+        price = newPrice;
+    }
+    
     /**
      * Return the amount of money already inserted for the
      * next ticket.
@@ -55,6 +77,12 @@ public class TicketMachine
         balance = balance + amount;
     }
 
+    
+    
+    public int getTotal()
+    {
+        return total;
+    }
     /**
      * Print a ticket.
      * Update the total collected and
@@ -75,4 +103,10 @@ public class TicketMachine
         // Clear the balance.
         balance = 0;
     }
+    
+    public void empty()
+    {
+        total = 0;
+    }
+    
 }

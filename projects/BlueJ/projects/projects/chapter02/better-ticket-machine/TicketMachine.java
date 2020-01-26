@@ -51,12 +51,12 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {
-            balance = balance + amount;
-        }
-        else {
+        if(amount <= 0) {
             System.out.println("Use a positive amount rather than: " +
                                amount);
+        }
+        else {
+            balance = balance + amount;
         }
     }
 
@@ -67,7 +67,8 @@ public class TicketMachine
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        int amountLeftToPay = price - balance;
+        if(amountLeftToPay <= 0) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -98,5 +99,12 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    
+    public int empty()
+    {
+        int oldtotal = total;
+        total = 0;
+        return oldtotal;
     }
 }
