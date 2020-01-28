@@ -20,6 +20,7 @@ public class Student
      */
     public Student(String fullName, String studentID)
     {
+        
         name = fullName;
         id = studentID;
         credits = 0;

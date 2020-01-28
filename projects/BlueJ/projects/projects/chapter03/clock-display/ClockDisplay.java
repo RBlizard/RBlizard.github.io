@@ -17,6 +17,7 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
+    private Rectangle window;
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -24,6 +25,7 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
+        window = new Rectangle(220,50);
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         updateDisplay();
@@ -36,6 +38,7 @@ public class ClockDisplay
      */
     public ClockDisplay(int hour, int minute)
     {
+        window = new Rectangle(220,50);
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
         setTime(hour, minute);
