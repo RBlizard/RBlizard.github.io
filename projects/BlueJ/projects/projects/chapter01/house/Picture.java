@@ -42,7 +42,7 @@ public class Picture
             wall.changeSize(120);
             wall.makeVisible();
             
-            window.changeColor("black");
+            //window.changeColor("black");
             window.moveHorizontal(-120);
             window.moveVertical(40);
             window.changeSize(40);
@@ -59,7 +59,7 @@ public class Picture
             sun.changeSize(80);
             sun.makeVisible();
             
-            sun2.changeColor("yellow");
+            //sun2.changeColor("yellow");
             sun2.moveHorizontal(50);
             sun2.moveVertical(-80);
             sun2.changeSize(60);
