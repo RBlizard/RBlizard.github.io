@@ -65,6 +65,7 @@ public class Picture
             sun2.changeSize(60);
             sun2.makeVisible();
             drawn = true;
+            setColor();
         }
     }
 

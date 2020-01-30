@@ -18,6 +18,8 @@ public class ClockDisplay
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
     private Rectangle window;
+    private String hoursDisplayValue; // custom variable - 12 hour clock
+    private boolean isTwelveHour; // custom Variable - 12 hour clock
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -44,6 +46,20 @@ public class ClockDisplay
         setTime(hour, minute);
     }
 
+    // custom method - 12 hour clock
+    public void setTwelveHour()
+    {
+        if(!isTwelveHour)
+        {
+            isTwelveHour = true;
+        }
+        else
+        {
+            isTwelveHour = false;
+        }
+        updateDisplay();
+    }
+    
     /**
      * This method should get called once every minute - it makes
      * the clock display go one minute forward.
@@ -73,6 +89,7 @@ public class ClockDisplay
      */
     public String getTime()
     {
+        
         return displayString;
     }
     
@@ -81,7 +98,45 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        //Custom if statement - 12 hour clock
+        if(isTwelveHour)
+        {
+            // custom if statement - 12 hour clock - calculate 12 hour time
+            if(hours.getValue() == 0)
+            {
+                hoursDisplayValue = "12";
+            }
+            else if(hours.getValue() > 0 && hours.getValue() <= 12)
+            {
+                hoursDisplayValue = hours.getDisplayValue();
+            }
+            else if(hours.getValue() > 12 && hours.getValue() < 22)
+            {
+                int newValue = hours.getValue() - 12;
+                hoursDisplayValue = "0" + newValue;
+            }
+            else if(hours.getValue() >= 22)
+            {
+                int newValue = hours.getValue() - 12;
+                hoursDisplayValue = "" + newValue;
+            }
+            
+            if(hours.getValue() < 12 || hours.getValue() == 0)
+            {
+            displayString = hoursDisplayValue + ":" + 
+                        minutes.getDisplayValue() + " AM";
+            }
+            else if(hours.getValue() >= 12)
+            {
+                displayString = hoursDisplayValue + ":" + 
+                        minutes.getDisplayValue() + " PM";
+            }
+        }
+        else
+        {
+            hoursDisplayValue = hours.getDisplayValue();
+            displayString = hoursDisplayValue + ":" + 
+                            minutes.getDisplayValue();
+        }
     }
 }
