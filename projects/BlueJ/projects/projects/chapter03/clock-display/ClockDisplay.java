@@ -16,6 +16,7 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
+    private NumberDisplay seconds;   // custom object variable
     private String displayString;    // simulates the actual display
     private Rectangle window;
     private String hoursDisplayValue; // custom variable - 12 hour clock
@@ -30,6 +31,7 @@ public class ClockDisplay
         window = new Rectangle(220,50);
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        seconds = new NumberDisplay(60);
         updateDisplay();
     }
 
@@ -38,12 +40,13 @@ public class ClockDisplay
      * creates a new clock set at the time specified by the 
      * parameters.
      */
-    public ClockDisplay(int hour, int minute)
+    public ClockDisplay(int hour, int minute, int second)
     {
         window = new Rectangle(220,50);
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
-        setTime(hour, minute);
+        seconds = new NumberDisplay(24);
+        setTime(hour, minute, second);
     }
 
     // custom method - 12 hour clock
@@ -66,9 +69,12 @@ public class ClockDisplay
      */
     public void timeTick()
     {
-        minutes.increment();
-        if(minutes.getValue() == 0) {  // it just rolled over!
-            hours.increment();
+        seconds.increment();
+        if(seconds.getValue() == 0){ // seconds rolled over
+            minutes.increment();
+            if(minutes.getValue() == 0) {  // it just rolled over!
+                hours.increment();
+            }
         }
         updateDisplay();
     }
@@ -77,10 +83,11 @@ public class ClockDisplay
      * Set the time of the display to the specified hour and
      * minute.
      */
-    public void setTime(int hour, int minute)
+    public void setTime(int hour, int minute, int second)
     {
         hours.setValue(hour);
         minutes.setValue(minute);
+        seconds.setValue(second);
         updateDisplay();
     }
 
@@ -136,7 +143,8 @@ public class ClockDisplay
         {
             hoursDisplayValue = hours.getDisplayValue();
             displayString = hoursDisplayValue + ":" + 
-                            minutes.getDisplayValue();
+                            minutes.getDisplayValue() + ":"
+                            + seconds.getDisplayValue();
         }
     }
 }
