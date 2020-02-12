@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class implements a technical support system. It is the top level class 
@@ -52,8 +53,18 @@ public class SupportSystem
             }
         }
         printGoodbye();
+        printUniqueWords();
     }
-
+    
+    private void printUniqueWords() {
+        Set<String> allWords = counter.getWords();
+        for (String word : allWords){
+            if (!responder.hasWord(word)) {
+                System.out.println(word + ": " + counter.count(word));
+            }
+        }
+        
+    }
     /**
      * Print a welcome message to the screen.
      */
