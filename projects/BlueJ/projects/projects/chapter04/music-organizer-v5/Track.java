@@ -17,6 +17,8 @@ public class Track
     
     // How many times the Track has been played
     private int playCount;
+    // Is the song favorited?
+    private boolean isFavorite;
     
     /**
      * Constructor for objects of class Track.
@@ -99,5 +101,13 @@ public class Track
     
     public void resetPlayCount() {
         playCount = 0;
+    }
+    
+    public void setFavorite() {
+        if (!isFavorite) {isFavorite = true;}  else {isFavorite = false;}
+    }
+    
+    public boolean isTrackFavorite() {
+        return isFavorite;
     }
 }

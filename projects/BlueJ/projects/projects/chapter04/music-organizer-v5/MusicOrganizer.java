@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A class to hold details of audio tracks.
@@ -53,9 +54,12 @@ public class MusicOrganizer
      */
     public void playTrack(int index)
     {
+        player.stop();
+        
         if(indexValid(index)) {
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
+            track.incrementPlayCount();
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
@@ -116,6 +120,24 @@ public class MusicOrganizer
             tracks.remove(index);
         }
     }
+    
+    //custom method
+    /**
+     * Remove tracks from the collection containing a term.
+     * @param String The term to search for when removing tracks.
+     */
+    public void bulkRemoveTracks(String removeString) {
+        Iterator<Track> it = tracks.iterator();
+        
+        while(it.hasNext()){
+            Track t = it.next();
+            if(t.getFilename().contains(removeString)){
+                it.remove();
+            }
+        }
+        
+    }
+    
     
     /**
      * Play the first track in the collection, if there is one.
