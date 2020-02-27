@@ -90,8 +90,8 @@ public class MusicOrganizer
         int index = 0;
         // Record that we will be searching until a match is found.
         boolean searching = true;
-
-        while(searching && index < files.size()) {
+        int size = files.size();
+        while(searching && index < size) {
             String filename = files.get(index);
             if(filename.contains(searchString)) {
                 // A match. We can stop searching.

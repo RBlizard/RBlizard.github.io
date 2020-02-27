@@ -57,8 +57,11 @@ public class MusicOrganizer
      */
     public void listAllFiles()
     {
+        int position = 0;
+        
         for(String filename : files) {
-            System.out.println(filename);
+            System.out.println(position + ": " + filename);
+            position ++;
         }
     }
     
@@ -137,11 +140,35 @@ public class MusicOrganizer
      * @param searchString The string to match.
      */
     public void listMatching(String searchString){
+        boolean hasMatch = false;
+        
         for(String filename : files) {
             if(filename.contains(searchString)){
                 // A match.
+                hasMatch = true;
                 System.out.println(filename);
             }
         }
+        
+        if(!hasMatch){
+            System.out.println("No matches found");
+        }
     }
+    
+    
+    /**
+     * Plays a sample of each file by the given artist
+     * @param artistString The artist to match.
+     */
+    public void sampleArtist(String artistString){
+        
+        for(String filename : files) {
+            if(filename.contains(artistString)){
+                // A match.
+                player.playSample(filename);
+            }
+        }
+    }
+    
+  
 }

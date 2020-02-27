@@ -13,6 +13,10 @@ public class Track
     private String title;
     // Where the track is stored.
     private String filename;
+    // custom variables beyond this point
+    
+    // How many times the Track has been played
+    private int playCount;
     
     /**
      * Constructor for objects of class Track.
@@ -85,4 +89,15 @@ public class Track
         this.filename = filename;
     }
     
+    // custom methods beyond this point
+    
+    
+    public void incrementPlayCount() {
+        playCount += 1;
+    }
+    
+    
+    public void resetPlayCount() {
+        playCount = 0;
+    }
 }
