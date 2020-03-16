@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * A simple model of an auction.
  * The auction maintains a list of lots of arbitrary length.
@@ -57,8 +57,8 @@ public class Auction
     {
         Lot selectedLot = getLot(lotNumber);
         if(selectedLot != null) {
-            Bid bid = new Bid(bidder, value);
-            boolean successful = selectedLot.bidFor(bid);
+            //Bid bid = new Bid(bidder, value);
+            boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
                                    lotNumber + " was successful.");
@@ -80,25 +80,69 @@ public class Auction
      */
     public Lot getLot(int lotNumber)
     {
-        if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
-            // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
-            // Include a confidence check to be sure we have the
-            // right lot.
-            if(selectedLot.getNumber() != lotNumber) {
-                System.out.println("Internal error: Lot number " +
-                                   selectedLot.getNumber() +
-                                   " was returned instead of " +
-                                   lotNumber);
-                // Don't return an invalid lot.
-                selectedLot = null;
+        Lot selectedLot = null;
+        if(lotNumber >=1){
+            for (Lot lot : lots) {
+                if(lot.getNumber() == lotNumber) {
+                    selectedLot = lot;
+                }
             }
-            return selectedLot;
         }
-        else {
-            System.out.println("Lot number: " + lotNumber +
-                               " does not exist.");
-            return null;
+        if (selectedLot == null){
+            System.out.println("Internal error: Lot with requested number does not exist.");
         }
+        return selectedLot;
+    }
+    
+    /**
+     * Removes the specified Lot from the Auction.
+     * @param lotNumber The number of the lot to return.
+     * @return The Lot with the given number, or null
+     * if the Lot no longer exists.
+     */
+    public Lot removeLot(int lotNumber){
+        Lot selectedLot = null;
+        if(lotNumber >=1){
+            for (Lot lot : lots) {
+                if(lot.getNumber() == lotNumber) {
+                    selectedLot = lot;
+                    lots.remove(lot);
+                }
+            }
+        }
+        return selectedLot;
+    }
+    
+    /**
+     * Closes the auction and prints results of valued lots.
+     */
+    public void close() {
+        for(Lot lot : lots){
+            if(lot.getHighestBid() != null){
+                System.out.println(lot.toString() + ", Winner: " + 
+                lot.getHighestBid().getBidder().getName());       
+            }
+        }
+    }
+    
+    /**
+     * Returns lots that recieved no bids
+     * in the form of an ArrayList<Lot>.
+     */
+    public ArrayList<Lot> getUnsold(){
+        ArrayList<Lot> unsoldLots = new ArrayList<>();
+        Iterator<Lot> i = lots.iterator();
+        
+        while(i.hasNext()){
+            Lot l = i.next();
+            if(l.getHighestBid() == null){
+                unsoldLots.add(l);
+                i.remove();
+            }
+            else{
+                i.remove();
+            }
+        }
+        return unsoldLots;
     }
 }

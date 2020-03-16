@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * A class to hold details of audio files.
  * 
@@ -58,11 +58,16 @@ public class MusicOrganizer
     public void listAllFiles()
     {
         int position = 0;
-        
-        for(String filename : files) {
-            System.out.println(position + ": " + filename);
+        Iterator<String> i = files.iterator();
+        do{
+            System.out.println(position + ": " + i.next());
             position ++;
-        }
+        } while(i.hasNext());
+        
+        // for(String filename : files) {
+            // System.out.println(position + ": " + filename);
+            // position ++;
+        // }
     }
     
     /**

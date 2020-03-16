@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * Manage the stock in a business.
  * The stock is described by zero or more Products.
@@ -37,6 +37,9 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+        if(findProduct(id) !=null){
+            findProduct(id).increaseQuantity(amount);
+        }
     }
     
     /**
@@ -46,7 +49,18 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-        return null;
+        Product foundProduct = null;
+        Iterator<Product> i = stock.iterator();
+        while(i.hasNext() && (foundProduct == null)){
+            Product product = i.next();
+            if (product.getID() == id){
+                foundProduct = product;
+            }
+        }
+        if(foundProduct == null){
+            System.out.println("Internal error: Product does not exist.");
+        }
+        return foundProduct;
     }
     
     /**
@@ -58,7 +72,11 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        return 0;
+        int number = 0;
+        if(findProduct(id) != null){
+            number = findProduct(id).getQuantity();
+        }
+        return number;
     }
 
     /**
@@ -66,5 +84,8 @@ public class StockManager
      */
     public void printProductDetails()
     {
+        for(Product product : stock){
+            System.out.println(product.toString());
+        }
     }
 }
