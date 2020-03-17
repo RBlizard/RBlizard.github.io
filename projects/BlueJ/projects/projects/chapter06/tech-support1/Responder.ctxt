@@ -7,4 +7,6 @@ comment1.text=\r\n\ Construct\ a\ Responder\ -\ nothing\ to\ do\r\n
 comment2.params=
 comment2.target=java.lang.String\ generateResponse()
 comment2.text=\r\n\ Generate\ a\ response.\r\n\ @return\ \ \ A\ string\ that\ should\ be\ displayed\ as\ the\ response\r\n
-numComments=3
+comment3.params=
+comment3.target=void\ fillResponses()
+numComments=4

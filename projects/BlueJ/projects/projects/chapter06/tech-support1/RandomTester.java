@@ -1,5 +1,5 @@
 import java.util.Random;
-
+import java.util.ArrayList;
 /**
  * Write a description of class RandomTester here.
  *
@@ -10,6 +10,7 @@ public class RandomTester
 {
     // instance variables - replace the example below with your own
     final Random randomizer = new Random();
+    int randomNumber;
     
     public void printOneRandom(){
         System.out.println(randomizer.nextInt());
@@ -26,17 +27,20 @@ public class RandomTester
     }
     
     public String getResponse(){
-        int number = randomizer.nextInt();
+        
         String string = "Maybe";
-        switch (number % 3){
-            case 0: string = "Yes";
-            break;
-            case 1: string = "No";
-            break;
-            case 2: string = "Maybe";
-            break;
-        }
+        ArrayList<String> responses = new ArrayList<>();
+        System.out.println(minMax(0, responses.size()));
         return string;
     }
     
+    public int maxRandom(int max){
+        randomNumber = randomizer.nextInt(max) + 1;
+        return randomNumber;
+    }
+    
+    public int minMax(int min, int max){
+        randomNumber = randomizer.nextInt(max-min) + min;
+        return  randomNumber;  
+    }
 }
