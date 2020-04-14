@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 /**
  * Monitor counts of different types of animal.
@@ -36,9 +38,8 @@ public class AnimalMonitor
      */
     public void printList()
     {
-        for(Sighting record : sightings) {
-            System.out.println(record.getDetails());
-        }
+        sightings.forEach(record ->
+        System.out.println(record.getDetails()));
     }
     
     /**
@@ -47,11 +48,34 @@ public class AnimalMonitor
      */
     public void printSightingsOf(String animal)
     {
-        for(Sighting record : sightings) {
-            if(animal.equals(record.getAnimal())) {
-                System.out.println(record.getDetails());
-            }
-        }
+        sightings.stream()
+                    .filter(s -> animal.equals(s.getAnimal()))
+                    .forEach(s ->
+        System.out.println(s.getDetails()));
+    }
+    
+    /**
+     * Print the details of all the sightings on a given date.
+     * @param dayID The day in question
+     */
+    public void printSightingsDate(String searchID){
+        // sightings.stream()
+                    // .filter(s -> searchID.equals(s.getDayID()))
+                    // .forEach(s ->
+        // System.out.println(s.getDetails()));
+    }
+    
+    /**
+     * Print the details of all the sightings of an animal on a given date.
+     * @param dayID The day in question
+     * @param animal The animal in question
+     */
+    public void printAnimalDate(String searchID, String animal){
+        // sightings.stream()
+                    // .filter(s -> searchID.equals(s.getDayID()))
+                    // .filter(s -> animal.equals(s.getAnimal()))
+                    // .forEach(s ->
+        // System.out.println(s.getDetails()));
     }
     
     /**
@@ -60,13 +84,26 @@ public class AnimalMonitor
      */
     public void printSightingsBy(int spotter)
     {
-        for(Sighting record : sightings) {
-            if(record.getSpotter() == spotter) {
-                System.out.println(record.getDetails());
-            }
-        }        
+        sightings.stream()
+                    .filter(s -> s.getSpotter() == spotter)
+                    .map(s -> s.getDetails())
+                    .forEach(details ->
+        System.out.println(details));
     }
     
+    /**
+     * Print all the sighting counts of a given animal
+     * @param animal The animal in question
+     */
+    public void printSightingCounts(String animal){
+        sightings.stream()
+                    .filter(s -> animal.equals(s.getAnimal()))
+                    .map(s -> s.getCount())
+                    .forEach(count ->
+        System.out.println(count));
+    }
+    
+ 
     /**
      * Print a list of the types of animal considered to be endangered.
      * @param animalNames A list of animals names.
@@ -76,12 +113,14 @@ public class AnimalMonitor
     public void printEndangered(ArrayList<String> animalNames, 
                                 int dangerThreshold)
     {
-        for(String animal : animalNames) {
-            if(getCount(animal) <= dangerThreshold) {
-                System.out.println(animal + " is endangered.");
-            }
-        }
+        sightings.stream()
+                    .filter(s -> animalNames.contains(s.getAnimal()))
+                    .map(s -> s.getAnimal())
+                    .forEach(animal ->
+        System.out.println(animal));
     }
+    
+    
     
     /**
      * Return a count of the number of sightings of the given animal.
@@ -90,13 +129,41 @@ public class AnimalMonitor
      */
     public int getCount(String animal)
     {
-        int total = 0;
-        for(Sighting sighting : sightings) {
-            if(animal.equals(sighting.getAnimal())) {
-                total = total + sighting.getCount();
-            }
-        }
-        return total;
+        return sightings.stream()
+                    .filter(s ->
+        animal.equals(s.getAnimal()))
+                    .map(s -> s.getCount())
+                    .reduce(0, (total, count) -> total + count);
+    }
+    
+    /**
+     * Return the count of sightings of a given animal by a 
+     * spotter on a specific day
+     * @param animal The animal in question
+     * @param spotter The spotter in question
+     * @param searchID The dayID in question
+     */
+    public int getDayAnimalSpotterCount(String animal, String searchID, int spotter){
+        return sightings.stream()
+                    //.filter(s -> searchID.equals(s.dayID()))
+                    .filter(s -> animal.equals(s.getAnimal()))
+                    .filter(s -> spotter == s.getSpotter())
+                    .map(s -> s.getCount())
+                    .reduce(0, (total, count) -> total + 1);
+    }
+    
+    /**
+     * Returns a String with names of animals spotted by 
+     * the spotter on the given day
+     * @param spotter The spotter in question
+     * @param searchID The dayID in question
+     */
+    public String getSpotterAnimalsDate(int spotter,String searchID){
+        return sightings.stream()
+                    //.filter(s -> searchID.equals(s.DayID()))
+                    .filter(s -> spotter == s.getSpotter())
+                    .map(s -> s.getAnimal())
+                    .reduce("", (fullString, animal) -> fullString + ", " + animal);
     }
     
     /**
@@ -105,14 +172,55 @@ public class AnimalMonitor
      */
     public void removeZeroCounts()
     {
-        Iterator<Sighting> it = sightings.iterator();
-        while(it.hasNext()) {
-            Sighting record = it.next();
-            if(record.getCount() == 0) {
-                it.remove();
-            }
-        }
+        sightings.removeIf(s -> s.getCount() == 0);
     }
+    
+    /**
+     * Remove from the sightings list all of those records recorded
+     * by a given spotter.
+     * @param spotter The spotter in question
+     */
+    public void removeSpotterSightings(int spotter){
+        sightings.removeIf(s -> spotter == s.getSpotter());
+    }
+    
+    /**
+     * Returns how many sighting records have been made by a given
+     * spotter.
+     * @param spotter The spotter in question
+     */
+    public long getSpotterCount(int spotter){
+        return sightings.stream()
+                    .filter(s -> spotter == s.getSpotter())
+                    .count();
+    }
+    
+    /**
+     * Returns the largest count for any given animal in a single
+     * sighting record.
+     * @param animal The animal in question
+     */
+    public OptionalInt getLargestCount(String animal){
+        return sightings.stream()
+                    .filter(s -> animal.equals(s.getAnimal()))
+                    .mapToInt(s -> s.getCount())
+                    .max();
+    }
+    
+    /**
+     * Returns the first sighting recorded of an animal by a 
+     * specific spotter.
+     * @param animal The animal in question
+     * @param spotter The spotter in question
+     */
+    public Optional<Sighting> getFirstSighting(String animal, int spotter){
+        return sightings.stream()
+                    .filter(s -> animal.equals(s.getAnimal()))
+                    .filter(s -> spotter == s.getSpotter())
+                    .findFirst();
+    }
+    
+    
     
     /**
      * Return a list of all sightings of the given type of animal

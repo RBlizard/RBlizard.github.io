@@ -90,11 +90,9 @@ public class MusicOrganizer
     public void listAllTracks()
     {
         System.out.println("Track listing: ");
-
-        for(Track track : tracks) {
-            System.out.println(track.getDetails());
-        }
-        System.out.println();
+        tracks.stream()
+                    .forEach(t ->
+        System.out.println(t.getDetails()));
     }
     
     /**
@@ -103,11 +101,10 @@ public class MusicOrganizer
      */
     public void listByArtist(String artist)
     {
-        for(Track track : tracks) {
-            if(track.getArtist().contains(artist)) {
-                System.out.println(track.getDetails());
-            }
-        }
+        tracks.stream()
+                .filter(t -> artist.equals(t.getArtist()))
+                .forEach(t ->
+        System.out.println(t.getDetails()));
     }
     
     /**
