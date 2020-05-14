@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=TwosComp
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TwosComp\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=num\ bitLength
+comment1.target=java.lang.String\ showBits(int,\ int)
+comment1.text=\r\n\ Method\ Devised\ in\ Class,\ \r\n\ using\ both\ flipBits\ and\ addOne\ methods\r\n
+comment2.params=num\ bitLength
+comment2.target=java.lang.String\ simplerShowBits(int,\ int)
+comment2.text=\r\n\ Method\ derived\ from\ original,\ using\ only\ the\ flipBits\ method\ in\ tandem.\r\n\ We\ would\ likely\ be\ able\ to\ use\ a\ bit\ array\ to\ compile\ the\ entire\ program\r\n\ into\ this\ method,\ but\ I\ should\ use\ my\ other\ time\ to\ finish\ chapter\ 12.\r\n
+comment3.params=s
+comment3.target=java.lang.String\ flipBits(java.lang.String)
+comment4.params=binaryString
+comment4.target=java.lang.String\ addOne(java.lang.String)
+numComments=5

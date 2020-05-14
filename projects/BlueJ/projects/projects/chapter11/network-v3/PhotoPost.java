@@ -47,15 +47,8 @@ public class PhotoPost extends Post
         return caption;
     }
 
-    /**
-     * Display the details of this post.
-     * 
-     * (Currently: Print to the text terminal. This is simulating display 
-     * in a web browser for now.)
-     */
-    public void display()
-    {
-        System.out.println("  [" + filename + "]");
-        System.out.println("  " + caption);
+    public String toString(){
+        return username + "\n  [" + filename + "]\n" + "  " 
+                        + caption + "\n" + super.toString();
     }
 }

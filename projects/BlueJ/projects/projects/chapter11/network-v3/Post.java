@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Post 
 {
-    private String username;  // username of the post's author
+    protected String username;  // username of the post's author
     private long timestamp;
     private int likes;
     private ArrayList<String> comments;
@@ -67,29 +67,26 @@ public class Post
     }
 
     /**
-     * Display the details of this post.
-     * 
-     * (Currently: Print to the text terminal. This is simulating display 
-     * in a web browser for now.)
+     * toString override.
+     * @returns String representation of the object.
      */
-    public void display()
-    {
-        System.out.println(username);
-        System.out.print(timeString(timestamp));
+    public String toString(){
+        String text = timeString(timestamp);
         
         if(likes > 0) {
-            System.out.println("  -  " + likes + " people like this.");
+            text += "  -  " + likes + " people like this.";
         }
         else {
-            System.out.println();
+            text += "\n";
         }
         
         if(comments.isEmpty()) {
-            System.out.println("   No comments.");
+            text += "   No comments.\n";
         }
         else {
-            System.out.println("   " + comments.size() + " comment(s). Click here to view.");
+            text += "   " + comments.size() + " comment(s). Click here to view.";
         }
+        return text;
     }
     
     /**

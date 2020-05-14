@@ -44,7 +44,7 @@ public class Post
     public void display()
     {
         System.out.println(username);
-        System.out.print(timeString(timestamp));
+        //System.out.print(timeString(timestamp));
     }
     
     /**

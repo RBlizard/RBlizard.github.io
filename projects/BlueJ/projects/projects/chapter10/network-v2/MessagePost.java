@@ -37,4 +37,16 @@ public class MessagePost extends CommentedPost
     public void printShortSummary() {
         System.out.println("Message post from " + super.getUserName());
     }
+    
+    /**
+     * Display the details of this post.
+     * 
+     * (Currently: Print to the text terminal. This is simulating display 
+     * in a web browser for now.)
+     */
+    public void display()
+    {
+        System.out.println(message);
+        //System.out.print(timeString(timestamp));
+    }
 }
