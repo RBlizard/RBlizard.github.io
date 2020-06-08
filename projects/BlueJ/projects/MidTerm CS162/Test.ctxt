@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Test
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ main\ here.\r\n\r\n\ @author\ Ryan\ Blizard\r\n\ @version\ 1.05.14.2020\r\n\ \r\n\ Converting\ -15\ base\ 10\ to\ two's\ compliment\:\r\n\ \r\n\ Divide\ 15\ by\ two\ and\ record\ the\ remainder\ in\ the\ lowest\ bit\ location.\ (this\ should\ give\ you\ 1)\r\n\ Divide\ the\ result\ by\ two\ and\ record\ the\ remainder\ in\ the\ next\ bit\ location.\ (this\ should\ give\ you\ 11)\r\n\ Repeat\ until\ the\ dividend\ is\ 0.\ (this\ should\ give\ you\ 1111)\r\n\ Fill\ the\ remaining\ bit\ locations\ with\ 0's.(this\ should\ give\ you\ 00001111)\r\n\ Flip\ the\ bits,\ and\ add\ one.\ (This\ should\ give\ you\ 11110001,\ or\ -15\ in\ two's\ comp)\r\n\ \r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=shape
+comment2.target=void\ printShapes(java.lang.String)
+numComments=3
