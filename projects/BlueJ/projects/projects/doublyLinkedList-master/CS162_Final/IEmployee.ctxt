@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=IEmployee
+comment0.text=\r\n\ Write\ a\ description\ of\ interface\ IEmployee\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment1.text=\r\n\ Returns\ first\ and\ last\ name\r\n\r\n\ @return\ \ \ first\ +\ last\ name\ string\r\n
+comment2.params=
+comment2.target=double\ getPay()
+comment2.text=\r\n\ Returns\ the\ pay\ for\ the\ month\r\n\ \r\n\ @return\ pay\ for\ the\ month\ in\ dollars\r\n
+numComments=3

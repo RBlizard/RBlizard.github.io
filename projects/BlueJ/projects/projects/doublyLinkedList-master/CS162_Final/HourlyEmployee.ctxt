@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=HourlyEmployee
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ HourlyEmployee\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=first\ last\ hours\ wage
+comment1.target=HourlyEmployee(java.lang.String,\ java.lang.String,\ double,\ double)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ HourlyEmployee\r\n
+comment2.params=
+comment2.target=void\ updatePay()
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment3.params=hours
+comment3.target=void\ incrementHours(double)
+comment4.params=wage
+comment4.target=void\ changeWage(double)
+numComments=5
